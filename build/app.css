@@ -1,0 +1,9 @@
+.block {
+  background-color: blue;
+  letter-spacing: 0.06em;
+  top: 0;
+  bottom: 0; }
+  .block__element {
+    font-size: 16px; }
+    .block__element--modifier {
+      border: 1px solid red; }
