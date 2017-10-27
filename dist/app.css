@@ -7,3 +7,6 @@
     font-size: 16px; }
     .block__element--modifier {
       border: 1px solid red; }
+
+body {
+  background-color: green; }

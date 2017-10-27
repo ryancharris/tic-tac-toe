@@ -1,4 +1,6 @@
 console.log('whatttttt');
-console.log('fuck');
-console.log('shit');
-console.log('ass');
+console.log('hi');
+console.log('hiiiiiiiii');
+console.log('whatttttt');
+console.log('hi');
+console.log('hiiiiiiiii');

@@ -7,23 +7,20 @@ const extractSass = new ExtractTextPlugin({
 });
 
 const config = {
-  devServer: {
-    contentBase: path.resolve('build'),
-    port: 8080
-  },
+  devtool: 'source-map',
   entry: [
     path.resolve('./src/js/app.js'),
     path.resolve('./src/scss/app.scss')
   ],
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'app.js'
   },
   module: {
     rules: [
       {
         test: /\.html$/,
-        use: ['file-loader?name=/build/index.html!extract-loader!html-loader']
+        use: ['file-loader?name=[name].[ext]!extract-loader!html-loader']
       },
       {
         test: /\.js$/,
@@ -46,8 +43,13 @@ const config = {
   plugins: [
     extractSass
   ],
+  devServer: {
+    port: 8080,
+    contentBase: path.resolve('dist'),
+    index: '/dist/index.html'
+  },
   resolve: {
-    extensions: ['.js', '.scss', '.html'],
+    extensions: ['.js', '.scss', '.html', '.css'],
     modules: ['node_modules']
   },
   watch: true

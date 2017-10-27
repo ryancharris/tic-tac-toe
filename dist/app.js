@@ -79,9 +79,8 @@ module.exports = __webpack_require__(2);
 
 
 console.log('whatttttt');
-console.log('fuck');
-console.log('shit');
-console.log('ass');
+console.log('hi');
+console.log('yo');
 
 /***/ }),
 /* 2 */
