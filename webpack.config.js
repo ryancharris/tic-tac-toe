@@ -1,9 +1,16 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
   filename: 'app.css',
   allChunks: true
+});
+
+const browserSync = new BrowserSyncPlugin({
+  host: 'localhost',
+  port: 8080,
+  proxy: 'http://localhost:8080'
 });
 
 const config = {
@@ -41,7 +48,8 @@ const config = {
     ]
   },
   plugins: [
-    extractSass
+    extractSass,
+    browserSync
   ],
   devServer: {
     port: 8080,
