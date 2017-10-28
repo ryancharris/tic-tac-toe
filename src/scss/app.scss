@@ -20,6 +20,10 @@
 
     vertical-align: middle;
 
+    &--selected {
+      pointer-events: none;
+    }
+
     &::after {
       position: absolute;
       top: 50%;

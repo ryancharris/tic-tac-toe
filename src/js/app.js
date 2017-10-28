@@ -73,12 +73,11 @@ class Board {
 
   clearBoard() {
     this.tiles.forEach((tile) => {
-      tile.classList.remove('board__tile--x', 'board__tile--o');
+      tile.classList.remove('board__tile--x', 'board__tile--o', 'board__tile--selected');
     });
 
     this.setTurn(1);
     this.populateTurnDisplay(this.getTurn());
-    this.observeTiles();
   }
 
   populateTurnDisplay(turn) {
@@ -87,12 +86,10 @@ class Board {
 
   selectTile(tile) {
     if (this.getTurn() === 1) {
-      tile.classList.add('board__tile--x');
+      tile.classList.add('board__tile--x', 'board__tile--selected');
     } else if (this.getTurn() === 2) {
-      tile.classList.add('board__tile--o');
+      tile.classList.add('board__tile--o', 'board__tile--selected');
     }
-
-    // TO DO: disable tile when it has been selected
   }
 }
 
