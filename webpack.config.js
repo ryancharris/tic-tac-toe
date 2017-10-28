@@ -39,7 +39,7 @@ const config = {
       },
       {
         test: /\.scss$/,
-        use: extractSass.extract(['css-loader', 'sass-loader'])
+        use: extractSass.extract(['css-loader', 'sass-loader', 'postcss-loader'])
       }
     ]
   },
