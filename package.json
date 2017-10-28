@@ -14,6 +14,7 @@
     "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
+    "copy-webpack-plugin": "^4.2.0",
     "css-loader": "^0.28.7",
     "eslint": "^4.9.0",
     "eslint-config-punkave": "^1.0.10",

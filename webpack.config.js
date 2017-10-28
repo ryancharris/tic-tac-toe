@@ -26,10 +26,6 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.html$/,
-        use: ['file-loader?name=[name].[ext]!extract-loader!html-loader']
-      },
-      {
         test: /\.js$/,
         include: path.resolve('./src/js'),
         use: [
@@ -54,10 +50,10 @@ const config = {
   devServer: {
     port: 8080,
     contentBase: path.resolve('dist'),
-    index: '/dist/index.html'
+    index: 'index.html'
   },
   resolve: {
-    extensions: ['.js', '.scss', '.html', '.css'],
+    extensions: ['.js', '.scss'],
     modules: ['node_modules']
   },
   watch: true
