@@ -43,8 +43,11 @@
     </div>
 
     <div class="interface">
-      <button class="interface__button" data-js="startButton">Start</button>
-      <button class="interface__button" data-js="resetButton">Reset</button>
+      <div class="interface__button-wrapper">
+        <button class="interface__button" data-js="startButton">Start</button>
+        <button class="interface__button" data-js="resetButton">Reset</button>
+      </div>
+      <p>It's your turn, User <span data-js="turnDisplay"></span>!</p>
     </div>
   </div>
   <script src="app.js"></script>
