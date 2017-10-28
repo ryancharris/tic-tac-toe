@@ -10,6 +10,17 @@
 </head>
 <body>
   <div class="app">
+    <div class="interface">
+      <p class="interface__copy">
+        It's your turn, User
+        <span data-js="turnDisplay"></span>!
+      </p>
+      <div class="interface__button-wrapper">
+        <button class="interface__button" data-js="startButton">Start</button>
+        <button class="interface__button" data-js="resetButton">Reset</button>
+      </div>
+    </div>
+
     <div class="board">
       <div class="board__tile" data-js="tile" data-tile="1"></div>
       <div class="board__tile" data-js="tile" data-tile="2"></div>
@@ -22,16 +33,6 @@
       <div class="board__tile" data-js="tile" data-tile="7"></div>
       <div class="board__tile" data-js="tile" data-tile="8"></div>
       <div class="board__tile" data-js="tile" data-tile="9"></div>
-    </div>
-
-    <div class="interface">
-      <p class="interface__copy">
-        It's your turn, User <span data-js="turnDisplay"></span>!
-      </p>
-      <div class="interface__button-wrapper">
-        <button class="interface__button" data-js="startButton">Start</button>
-        <button class="interface__button" data-js="resetButton">Reset</button>
-      </div>
     </div>
   </div>
   <script src="app.js"></script>
