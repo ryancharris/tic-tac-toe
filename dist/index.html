@@ -11,43 +11,27 @@
 <body>
   <div class="app">
     <div class="board">
-      <div class="board__tile" data-js="tile" data-tile="1">
-        <span class="board__tile-content">1</span>
-      </div>
-      <div class="board__tile" data-js="tile" data-tile="2">
-        <span class="board__tile-content">2</span>
-      </div>
-      <div class="board__tile" data-js="tile" data-tile="3">
-        <span class="board__tile-content">3</span>
-      </div>
+      <div class="board__tile" data-js="tile" data-tile="1"></div>
+      <div class="board__tile" data-js="tile" data-tile="2"></div>
+      <div class="board__tile" data-js="tile" data-tile="3"></div>
 
-      <div class="board__tile" data-js="tile" data-tile="4">
-        <span class="board__tile-content">4</span>
-      </div>
-      <div class="board__tile" data-js="tile" data-tile="5">
-        <span class="board__tile-content">5</span>
-      </div>
-      <div class="board__tile" data-js="tile" data-tile="6">
-        <span class="board__tile-content">6</span>
-      </div>
+      <div class="board__tile" data-js="tile" data-tile="4"></div>
+      <div class="board__tile" data-js="tile" data-tile="5"></div>
+      <div class="board__tile" data-js="tile" data-tile="6"></div>
 
-      <div class="board__tile" data-js="tile" data-tile="7">
-        <span class="board__tile-content">7</span>
-      </div>
-      <div class="board__tile" data-js="tile" data-tile="8">
-        <span class="board__tile-content">8</span>
-      </div>
-      <div class="board__tile" data-js="tile" data-tile="9">
-        <span class="board__tile-content">9</span>
-      </div>
+      <div class="board__tile" data-js="tile" data-tile="7"></div>
+      <div class="board__tile" data-js="tile" data-tile="8"></div>
+      <div class="board__tile" data-js="tile" data-tile="9"></div>
     </div>
 
     <div class="interface">
+      <p class="interface__copy">
+        It's your turn, User <span data-js="turnDisplay"></span>!
+      </p>
       <div class="interface__button-wrapper">
         <button class="interface__button" data-js="startButton">Start</button>
         <button class="interface__button" data-js="resetButton">Reset</button>
       </div>
-      <p>It's your turn, User <span data-js="turnDisplay"></span>!</p>
     </div>
   </div>
   <script src="app.js"></script>

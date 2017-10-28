@@ -20,7 +20,7 @@ class Board {
   }
 
   //
-  // OBSERVERS
+  // Add event listeners to DOM elements
   //
 
   observeStart() {
@@ -38,7 +38,8 @@ class Board {
 
   observeTiles() {
     this.tiles.forEach((tile) => {
-      tile.addEventListener('click', () => {
+      tile.addEventListener('click', (event) => {
+        this.selectTile(event.target);
         this.nextTurn();
         this.populateTurnDisplay(this.getTurn());
       });
@@ -46,8 +47,9 @@ class Board {
   }
 
   //
-  // METHODS
+  // Methods to get, set and manage turn
   //
+
   setTurn(turn) {
     this.turn = turn;
   }
@@ -56,29 +58,41 @@ class Board {
     return this.turn;
   }
 
-
-  clearBoard() {
-    this.tiles.forEach((tile) => {
-      tile.innerHTML = '';
-    });
-
-    this.setTurn(1);
-
-    this.populateTurnDisplay(this.getTurn());
-  }
-
   resetTurns() {
     this.setTurn(1);
     this.populateTurnDisplay(this.turn);
+  }
+
+  nextTurn() {
+    this.getTurn() === 1 ? this.setTurn(2) : this.setTurn(1);
+  }
+
+  //
+  // Methods to manipulate the UI
+  //
+
+  clearBoard() {
+    this.tiles.forEach((tile) => {
+      tile.classList.remove('board__tile--x', 'board__tile--o');
+    });
+
+    this.setTurn(1);
+    this.populateTurnDisplay(this.getTurn());
+    this.observeTiles();
   }
 
   populateTurnDisplay(turn) {
     this.turnDisplay.innerHTML = turn;
   }
 
-  nextTurn() {
-    this.getTurn() === 1 ? this.setTurn(2) : this.setTurn(1);
-    console.log(this.turn);
+  selectTile(tile) {
+    if (this.getTurn() === 1) {
+      tile.classList.add('board__tile--x');
+    } else if (this.getTurn() === 2) {
+      tile.classList.add('board__tile--o');
+    }
+
+    // TO DO: disable tile when it has been selected
   }
 }
 
