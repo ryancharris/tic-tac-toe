@@ -2,44 +2,53 @@ class Board {
   constructor() {
     // Board states
     this.turn = 1;
-    this.tileState = {
-      0: {
+    this.tileState = [
+      {
+        'index': 0,
         'selected': false,
         'owner': 0
       },
-      1: {
+      {
+        'index': 1,
         'selected': false,
         'owner': 0
       },
-      2: {
+      {
+        'index': 2,
         'selected': false,
         'owner': 0
       },
-      3: {
+      {
+        'index': 3,
         'selected': false,
         'owner': 0
       },
-      4: {
+      {
+        'index': 4,
         'selected': false,
         'owner': 0
       },
-      5: {
+      {
+        'index': 5,
         'selected': false,
         'owner': 0
       },
-      6: {
+      {
+        'index': 6,
         'selected': false,
         'owner': 0
       },
-      7: {
+      {
+        'index': 7,
         'selected': false,
         'owner': 0
       },
-      8: {
+      {
+        'index': 8,
         'selected': false,
         'owner': 0
       }
-    };
+    ];
 
     // Set selectors
     this.tiles = document.querySelectorAll('[data-js="tile"]');
@@ -153,7 +162,83 @@ class Board {
     }
 
     this.setTileState(tileIndex, 'selected', true);
+
     // TO DO: add check to see if someone won
+    this.analyzeBoard();
+  }
+
+  //
+  // Methods for checking to see if a user has won
+  //
+
+  analyzeBoard() {
+    // Create an array of tiles owned by the current user
+    let currentUsersTiles = this.createUserTileArray(this.getTurn());
+
+    if (currentUsersTiles.length >= 3) {
+      // Compare user's array to winning combinations
+      debugger;
+      if (this.checkForWinner(currentUsersTiles)) {
+        // TO DO: disable all tiles
+        // TO DO: pop message that says you won
+        console.log('winner!');
+      } else {
+        console.log('no winner!');
+      }
+    }
+  }
+
+  createUserTileArray(user) {
+    return this.tileState.map(function (tile) {
+      if (tile.selected && tile.owner === user) {
+        return tile.index;
+      }
+    }).filter(function(tile) {
+      return tile != undefined;
+    });
+  }
+
+  checkForWinner(userArrayTile) {
+    // compare array of user's tiles to winning combos
+    let orderedArrayString = userArrayTile.sort();
+    let isWinner = true;
+
+    switch (true) {
+      // Horizontal row winners
+      case this.compareArrays(orderedArrayString, [0, 1, 2]):
+        break;
+      case this.compareArrays(orderedArrayString, [3, 4, 5]):
+        break;
+      case this.compareArrays(orderedArrayString, [6, 7, 8]):
+        break;
+      // Vertical row winners
+      case this.compareArrays(orderedArrayString, [0, 3, 6]):
+        break;
+      case this.compareArrays(orderedArrayString, [1, 4, 7]):
+        break;
+      case this.compareArrays(orderedArrayString, [2, 5, 8]):
+        break;
+      // Diagonal winners
+      case this.compareArrays(orderedArrayString, [0, 4, 8]):
+        break;
+      case this.compareArrays(orderedArrayString, [2, 4, 6]):
+        break;
+      // Everything else
+      default:
+        isWinner = false;
+        break;
+    }
+
+    return isWinner;
+  }
+
+  compareArrays(userArray, testArray) {
+    for (let i = 0; i < testArray.length; i++) {
+      if (userArray.indexOf(testArray[i]) === -1) {
+        return false;
+      }
+    }
+    return true;
   }
 }
 
