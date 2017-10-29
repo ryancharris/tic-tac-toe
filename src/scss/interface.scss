@@ -1,14 +1,13 @@
 .interface {
-  height: 150px;
-
-  padding: 25px;
+  padding: 10px;
 
   text-align: center;
 
   &__copy {
-    margin: 10px;;
+    margin-bottom: 10px;
 
     font-size: 24px;
+    font-family: Arial, sans-serif;
     font-weight: bold;
   }
 
@@ -18,10 +17,7 @@
   }
 
   &__button {
-    display: inline-block;
-    margin: 0 10px;
-    padding: 8px 15px;
-
-    text-transform: uppercase;
+    max-width: 300px;
+    margin: 15px auto;
   }
 }

@@ -7,7 +7,9 @@
   display: table;
   width: 50%;
   min-width: 300px;
-  height: 40%;
+  height: auto;
+
+  padding: 20px;
 
   background-color: #ffffff;
 
@@ -26,7 +28,7 @@
     margin: 0 auto 35px;
     padding: 0 0.5em;
 
-    font-size: 1.75rem;
+    font-size: 1.55rem;
     font-family: Helvetica, sans-serif;
     font-weight: bold;
     text-align: center;
@@ -49,26 +51,7 @@
   }
 
   &__button {
-    display: block;
-    padding: 10px 20px;
     margin: 0 auto 15px;
-
-    width: 75%;
-
-    border: none;
-    border-radius: 5px;
-
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-
-    background-color: #fd9e30;
-
-    cursor: pointer;
-
-    &:hover {
-      background-color: darken(#fd9e30, 10%);
-    }
   }
 
   &__button {

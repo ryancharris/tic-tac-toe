@@ -12,11 +12,8 @@
   <div class="app">
     <div class="interface">
       <p class="interface__copy">
-        <span data-js="turnDisplay"></span>
+        <span data-js="turnDisplay">Let's Play!</span>
       </p>
-      <div class="interface__button-wrapper">
-        <button class="interface__button" data-js="resetButton">Reset</button>
-      </div>
     </div>
 
     <div class="board">
@@ -32,6 +29,8 @@
       <div class="board__tile" data-js="tile" data-index="7"></div>
       <div class="board__tile" data-js="tile" data-index="8"></div>
     </div>
+
+    <button class="interface__button button" data-js="resetButton">Reset</button>
   </div>
 
   <!-- START / RESET MODAL -->
@@ -47,7 +46,7 @@
         <input class="modal__input" data-js="userTwoInput" id="user-two" type="text" name="name" placeholder="User 2, enter your name!">
       </div>
 
-      <button class="modal__button" type="button" data-js="startButton">Start</button>
+      <button class="modal__button button" type="button" data-js="startButton">Start</button>
     </div>
   </div>
 
@@ -57,14 +56,13 @@
       <p class="modal__copy">
         <span data-js="winnerDisplay"></span>
       </p>
-      <button class="modal__button" type="button" data-js="playAgain">Play Again</button>
-      <button class="modal__button" type="button" data-js="startOver">Start Over</button>
+      <button class="modal__button button" type="button" data-js="playAgain">Play Again</button>
+      <button class="modal__button button" type="button" data-js="startOver">Start Over</button>
     </div>
   </div>
 
   <!-- OVERLAY FOR MODALS -->
   <div class="overlay" data-js="modalOverlay"></div>
-
   <script src="app.js"></script>
 </body>
 </html>

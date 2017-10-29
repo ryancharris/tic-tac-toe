@@ -40,8 +40,6 @@ class Board {
     this.observeReset();
     this.observeStart();
     this.observeTiles();
-
-    this.hideStartModal();
   }
 
   //
@@ -75,6 +73,7 @@ class Board {
     this.startOver.addEventListener('click', () => {
       this.hideWinnerModal();
       this.clearBoard();
+      this.resetInterfaceHeader();
       this.showStartModal();
     });
   }
@@ -234,6 +233,10 @@ class Board {
     } else if (turn === 0) {
       this.winnerDisplay.innerHTML = `Whoa! It's a tie!`;
     }
+  }
+
+  resetInterfaceHeader() {
+    this.turnDisplay.innerHTML = `Let's Play!`;
   }
 
   //
