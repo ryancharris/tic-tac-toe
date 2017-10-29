@@ -1,27 +1,33 @@
 .board {
-  width: 100%;
+  width: 85%;
+  min-width: 300px;
+
+  margin: 0 auto;
   overflow: auto;
 
-  background-color: pink;
+  border: 2px solid rgba(0, 0, 0, 0.15);
 
   &__tile {
     position: relative;
-
-    width: (100% / 3);
-    height: calc((100vh - 150px) / 3);
     float: left;
 
-    padding: 5px;
-    border: 5px solid red;
+    width: (100% / 3);
+    padding-top: (100% / 3);
 
-    vertical-align: middle;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    background-color: white;
+
+    transition: background-color 200ms linear, border 200ms linear;
+
+    cursor: pointer;
 
     &--selected {
       pointer-events: none;
     }
 
     &:hover {
-      background-color: grey;
+      background-color: rgba(136, 136, 136, 0.025);
+      border: 2px solid rgba(0, 0, 0, 0.35);
     }
 
     &::after {
@@ -41,7 +47,7 @@
     }
 
     &--x {
-      background-color: lightgreen;
+      background-color: #ff7be2;
 
       &::after {
         content: 'X';
@@ -49,7 +55,7 @@
     }
 
     &--o {
-      background-color: lightsalmon;
+      background-color: #66cfce;
 
       &::after {
         content: 'O';

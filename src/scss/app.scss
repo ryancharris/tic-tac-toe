@@ -3,10 +3,16 @@
 @import "overlay";
 @import "modal";
 
+// Reset box-sizing
 * {
   box-sizing: border-box;
 }
 
+body {
+  background-color: whitesmoke;
+}
+
+// Global classes
 .hidden {
   display: none;
 }

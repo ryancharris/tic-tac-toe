@@ -96,18 +96,28 @@ var Board = function () {
 
     // Set selectors
     this.tiles = document.querySelectorAll('[data-js="tile"]');
+
     this.turnDisplay = document.querySelector('[data-js="turnDisplay"]');
+    this.winnerDisplay = document.querySelector('[data-js="winnerDisplay"');
+
     this.startButton = document.querySelector('[data-js="startButton"]');
     this.resetButton = document.querySelector('[data-js="resetButton"]');
+    this.playAgain = document.querySelector('[data-js="playAgain"]');
+    this.startOver = document.querySelector('[data-js="startOver"]');
+
     this.userOneInput = document.querySelector('[data-js="userOneInput"]');
     this.userTwoInput = document.querySelector('[data-js="userTwoInput"]');
+
     this.startModal = document.querySelector('[data-js="startModal"]');
+    this.winnerModal = document.querySelector('[data-js="winnerModal"]');
     this.modalOverlay = document.querySelector('[data-js="modalOverlay"]');
 
     // Add event listeners
     this.observeReset();
     this.observeStart();
     this.observeTiles();
+
+    this.hideStartModal();
   }
 
   //
@@ -132,19 +142,41 @@ var Board = function () {
 
       this.resetButton.addEventListener('click', function () {
         _this2.clearBoard();
-        _this2.showStartModal();
+        _this2.populateTurnDisplay(_this2.getTurn());
+      });
+    }
+  }, {
+    key: 'observePlayAgain',
+    value: function observePlayAgain() {
+      var _this3 = this;
+
+      this.playAgain.addEventListener('click', function () {
+        _this3.hideWinnerModal();
+        _this3.clearBoard();
+        _this3.populateTurnDisplay(_this3.getTurn());
+      });
+    }
+  }, {
+    key: 'observeStartOver',
+    value: function observeStartOver() {
+      var _this4 = this;
+
+      this.startOver.addEventListener('click', function () {
+        _this4.hideWinnerModal();
+        _this4.clearBoard();
+        _this4.showStartModal();
       });
     }
   }, {
     key: 'observeTiles',
     value: function observeTiles() {
-      var _this3 = this;
+      var _this5 = this;
 
       this.tiles.forEach(function (tile) {
         tile.addEventListener('click', function (event) {
-          _this3.selectTile(event.target);
-          _this3.nextTurn();
-          _this3.populateTurnDisplay(_this3.getTurn());
+          _this5.selectTile(event.target);
+          _this5.nextTurn();
+          _this5.populateTurnDisplay(_this5.getTurn());
         });
       });
     }
@@ -214,7 +246,7 @@ var Board = function () {
   }, {
     key: 'clearBoard',
     value: function clearBoard() {
-      var _this4 = this;
+      var _this6 = this;
 
       this.tiles.forEach(function (tile) {
         var tileIndex = tile.getAttribute('data-index');
@@ -223,8 +255,8 @@ var Board = function () {
         tile.classList.remove('board__tile--x', 'board__tile--o', 'board__tile--selected');
 
         // Reset state associated with all tiles
-        _this4.setTileState(tileIndex, 'selected', false);
-        _this4.setTileState(tileIndex, 'owner', 0);
+        _this6.setTileState(tileIndex, 'selected', false);
+        _this6.setTileState(tileIndex, 'owner', 0);
       });
 
       // Reset turn counter and update interface display
@@ -238,7 +270,7 @@ var Board = function () {
       if (turn === 1) {
         this.turnDisplay.innerHTML = 'It\'s your turn, ' + this.userOne + '!';
       } else if (turn === 2) {
-        this.turnDisplay.innerHTML = 'It\'s your turn, ' + this.userTwo;
+        this.turnDisplay.innerHTML = 'It\'s your turn, ' + this.userTwo + '!';
       }
     }
   }, {
@@ -260,8 +292,6 @@ var Board = function () {
       }
 
       this.setTileState(tileIndex, 'selected', true);
-
-      // TO DO: add check to see if someone won
       this.analyzeBoard();
     }
   }, {
@@ -277,15 +307,45 @@ var Board = function () {
       this.modalOverlay.classList.add('hidden');
       this.modalOverlay.classList.remove('overlay--visible');
       this.startModal.classList.add('hidden');
-      this.startModal.classList.remove('start-modal--visible');
+      this.startModal.classList.remove('modal--visible');
     }
   }, {
     key: 'showStartModal',
     value: function showStartModal() {
       this.modalOverlay.classList.add('overlay--visible');
       this.modalOverlay.classList.remove('hidden');
-      this.startModal.classList.add('start-modal--visible');
+      this.startModal.classList.add('modal--visible');
       this.startModal.classList.remove('hidden');
+    }
+  }, {
+    key: 'showWinnerModal',
+    value: function showWinnerModal() {
+      this.modalOverlay.classList.add('overlay--visible');
+      this.modalOverlay.classList.remove('hidden');
+      this.winnerModal.classList.add('modal--visible');
+      this.winnerModal.classList.remove('hidden');
+
+      this.observePlayAgain();
+      this.observeStartOver();
+    }
+  }, {
+    key: 'hideWinnerModal',
+    value: function hideWinnerModal() {
+      this.modalOverlay.classList.add('hidden');
+      this.modalOverlay.classList.remove('overlay--visible');
+      this.winnerModal.classList.add('hidden');
+      this.winnerModal.classList.remove('modal--visible');
+    }
+  }, {
+    key: 'setWinnerDisplay',
+    value: function setWinnerDisplay(turn) {
+      if (turn === 1) {
+        this.winnerDisplay.innerHTML = 'Congratulations, ' + this.userOne + '!';
+      } else if (turn === 2) {
+        this.winnerDisplay.innerHTML = 'Congratulations, ' + this.userTwo + '!';
+      } else if (turn === 0) {
+        this.winnerDisplay.innerHTML = 'Whoa! It\'s a tie!';
+      }
     }
 
     //
@@ -302,11 +362,13 @@ var Board = function () {
         // Compare user's array to winning combinations
         if (this.checkForWinner(currentUsersTiles)) {
           this.disableAllTiles();
-          // TO DO: pop message that says you won
-          console.log('winner!');
+          this.setWinnerDisplay(this.getTurn());
+          this.showWinnerModal();
         } else {
-          // TO DO: Handle all tiles are full
-          console.log('Are all tiles full? If so, end game.');
+          if (this.checkForFullBoard()) {
+            this.showWinnerModal();
+            this.setWinnerDisplay(0);
+          }
         }
       }
     }
@@ -320,6 +382,23 @@ var Board = function () {
       }).filter(function (tile) {
         return tile != undefined;
       });
+    }
+  }, {
+    key: 'checkForFullBoard',
+    value: function checkForFullBoard() {
+      var selectedTiles = this.tileState.map(function (tile) {
+        if (tile.selected === true) {
+          return tile;
+        }
+      }).filter(function (tile) {
+        return tile != undefined;
+      });
+
+      if (selectedTiles.length === 9) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }, {
     key: 'checkForWinner',
@@ -377,7 +456,7 @@ var board = new Board();
 /* 2 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \n@import \"src/scss/interface\";\n^\n      File to import not found or unreadable: src/scss/interface.\nParent style sheet: stdin\n      in /Users/ryan/projects/punk-ave-challenge/src/scss/app.scss (line 2, column 1)\n    at runLoaders (/Users/ryan/projects/punk-ave-challenge/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /Users/ryan/projects/punk-ave-challenge/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /Users/ryan/projects/punk-ave-challenge/node_modules/loader-runner/lib/LoaderRunner.js:230:18\n    at context.callback (/Users/ryan/projects/punk-ave-challenge/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (/Users/ryan/projects/punk-ave-challenge/node_modules/sass-loader/lib/loader.js:55:13)\n    at Object.<anonymous> (/Users/ryan/projects/punk-ave-challenge/node_modules/async/dist/async.js:2244:31)\n    at Object.callback (/Users/ryan/projects/punk-ave-challenge/node_modules/async/dist/async.js:906:16)\n    at options.error (/Users/ryan/projects/punk-ave-challenge/node_modules/node-sass/lib/index.js:294:32)");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

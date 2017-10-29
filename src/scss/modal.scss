@@ -1,18 +1,21 @@
 .modal {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   z-index: 200;
 
   display: table;
   width: 50%;
+  min-width: 300px;
   height: 40%;
 
-  background-color: red;
+  background-color: #ffffff;
 
-  transform: translate(-50%, -50%);
+  border-radius: 10px;
 
-  box-shadow: 1px, 3px, rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -40%);
+
+  box-shadow: 1px 3px 40px 20px rgba(0, 0, 0, 0.15);
 
   &__content {
     display: table-cell;
@@ -20,25 +23,56 @@
   }
 
   &__copy {
-    margin-top: 0;
+    margin: 0 auto 35px;
+    padding: 0 0.5em;
 
+    font-size: 1.75rem;
+    font-family: Helvetica, sans-serif;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
+    line-height: 38px;
   }
 
   &__input-wrapper {
     text-align: center;
   }
 
-  &__start-btn {
+  &__input {
+    width: 75%;
+
+    margin-bottom: 20px;
+    padding: 10px 20px;
+
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+
+  &__button {
     display: block;
     padding: 10px 20px;
-    margin: 0 auto;
+    margin: 0 auto 15px;
 
-    width: 33%;
+    width: 75%;
 
+    border: none;
+    border-radius: 5px;
+
+    color: #ffffff;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    background-color: #fd9e30;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken(#fd9e30, 10%);
+    }
+  }
+
+  &__button {
+    cursor: pointer;
   }
 
   &--visible {
