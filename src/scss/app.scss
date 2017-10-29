@@ -91,3 +91,66 @@
     text-transform: uppercase;
   }
 }
+
+.start-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 200;
+
+  display: table;
+  width: 50%;
+  height: 40%;
+
+  background-color: red;
+
+  transform: translate(-50%, -50%);
+
+  box-shadow: 1px, 3px, rgba(0, 0, 0, 0.15);
+
+  &__content {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  &__copy {
+    margin-top: 0;
+
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__input-wrapper {
+    text-align: center;
+  }
+
+  &__start-btn {
+    display: block;
+    padding: 10px 20px;
+    margin: 0 auto;
+
+    width: 33%;
+
+    text-transform: uppercase;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: initial;
+}

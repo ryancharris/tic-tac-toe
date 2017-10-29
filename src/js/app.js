@@ -25,6 +25,8 @@ class Board {
     this.resetButton = document.querySelector('[data-js="resetButton"]');
     this.userOneInput = document.querySelector('[data-js="userOneInput"]');
     this.userTwoInput = document.querySelector('[data-js="userTwoInput"]');
+    this.startModal = document.querySelector('[data-js="startModal"]');
+    this.modalOverlay = document.querySelector('[data-js="modalOverlay"]');
 
     // Add event listeners
     this.observeReset();
@@ -39,6 +41,7 @@ class Board {
   observeStart() {
     this.startButton.addEventListener('click', () => {
       this.setUserNames();
+      this.hideStartModal();
       this.populateTurnDisplay(this.getTurn());
     });
   }
@@ -46,7 +49,7 @@ class Board {
   observeReset() {
     this.resetButton.addEventListener('click', () => {
       this.clearBoard();
-      // TO DO: Needs to pop the "Start" modal here
+      this.showStartModal();
     });
   }
 
@@ -75,7 +78,7 @@ class Board {
   }
 
   //
-  // Methods to get, set and manage turns
+  // TURN MANAGEMENT
   //
 
   setTurn(turn) {
@@ -164,8 +167,18 @@ class Board {
     });
   }
 
+  hideStartModal() {
+    this.modalOverlay.classList.add('hidden');
+    this.startModal.classList.add('hidden');
+  }
+
+  showStartModal() {
+    this.modalOverlay.classList.add('visible');
+    this.startModal.classList.add('visible');
+  }
+
   //
-  // Methods for checking to see if a user has won
+  // CHECKING FOR WINNER
   //
 
   analyzeBoard() {

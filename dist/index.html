@@ -33,16 +33,25 @@
       <div class="board__tile" data-js="tile" data-index="8"></div>
     </div>
 
-    <div class="start-modal">
-      <label for="user-one">User 1:</label>
-      <input data-js="userOneInput" id="user-one" type="text" name="name">
+    <div class="start-modal" data-js="startModal">
+      <div class="start-modal__content">
+        <p class="start-modal__copy">Who wants to play Tic Tac Toe?!</p>
 
-      <label for="user-two">User 2:</label>
-      <input data-js="userTwoInput" id="user-two" type="text" name="name">
+        <div class="start-modal__input-wrapper">
+          <label for="user-one">User 1:</label>
+          <input data-js="userOneInput" id="user-one" type="text" name="name">
+        </div>
 
-      <button class="interface__button" type="button" data-js="startButton">Start</button>
+        <div class="start-modal__input-wrapper">
+          <label for="user-two">User 2:</label>
+          <input data-js="userTwoInput" id="user-two" type="text" name="name">
+        </div>
+
+        <button class="start-modal__start-btn" type="button" data-js="startButton">Start</button>
+      </div>
     </div>
   </div>
+  <div class="overlay" data-js="modalOverlay"></div>
   <script src="app.js"></script>
 </body>
 </html>
