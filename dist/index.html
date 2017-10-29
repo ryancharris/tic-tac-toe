@@ -12,7 +12,7 @@
   <div class="app">
     <div class="interface">
       <p class="interface__copy">
-        It's your turn, <span data-js="turnDisplay"></span>!
+        <span data-js="turnDisplay"></span>
       </p>
       <div class="interface__button-wrapper">
         <button class="interface__button" data-js="resetButton">Reset</button>
@@ -34,15 +34,13 @@
     </div>
 
     <div class="start-modal">
-      <form action="" method="get">
-        <label for="user-one">User 1:</label>
-        <input data-js="userOneInput" id="user-one" type="text" name="name">
+      <label for="user-one">User 1:</label>
+      <input data-js="userOneInput" id="user-one" type="text" name="name">
 
-        <label for="user-two">User 2:</label>
-        <input data-js="userTwoInput" id="user-two" type="text" name="name">
+      <label for="user-two">User 2:</label>
+      <input data-js="userTwoInput" id="user-two" type="text" name="name">
 
-        <button class="interface__button" type="button" data-js="startButton">Start</button>
-      </form>
+      <button class="interface__button" type="button" data-js="startButton">Start</button>
     </div>
   </div>
   <script src="app.js"></script>

@@ -30,13 +30,10 @@ class Board {
     this.observeReset();
     this.observeStart();
     this.observeTiles();
-
-    // Set initial interface
-    this.populateTurnDisplay(this.turn);
   }
 
   //
-  // Add event listeners to DOM elements
+  // OBSERVERS
   //
 
   observeStart() {
@@ -49,6 +46,7 @@ class Board {
   observeReset() {
     this.resetButton.addEventListener('click', () => {
       this.clearBoard();
+      // TO DO: Needs to pop the "Start" modal here
     });
   }
 
@@ -63,12 +61,17 @@ class Board {
   }
 
   //
-  // Methods for dealing with users
+  // USERS
   //
 
   setUserNames() {
     this.userOne = this.userOneInput.value;
     this.userTwo = this.userTwoInput.value;
+  }
+
+  resetInputs() {
+    this.userOneInput.value = '';
+    this.userTwoInput.value = '';
   }
 
   //
@@ -93,7 +96,7 @@ class Board {
   }
 
   //
-  // Methods to get, set and manage this.tileState{}
+  // BOARD STATE
   //
 
   getTileState(index) {
@@ -105,7 +108,7 @@ class Board {
   }
 
   //
-  // Methods to manipulate the UI
+  // DOM / UI MANIPULATION
   //
 
   clearBoard() {
@@ -122,14 +125,20 @@ class Board {
 
     // Reset turn counter and update interface display
     this.resetTurns();
+    this.resetInputs();
+    this.clearNameInterface();
   }
 
   populateTurnDisplay(turn) {
     if (turn === 1) {
-      this.turnDisplay.innerHTML = this.userOne;
+      this.turnDisplay.innerHTML = `It's your turn, ${this.userOne}!`;
     } else if (turn === 2) {
-      this.turnDisplay.innerHTML = this.userTwo
+      this.turnDisplay.innerHTML = `It's your turn, ${this.userTwo}`;
     }
+  }
+
+  clearNameInterface() {
+    this.turnDisplay.innerHTML = '';
   }
 
   selectTile(tile) {
