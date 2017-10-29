@@ -94,8 +94,12 @@ class Board {
   //
 
   setUserNames() {
-    this.userOne = this.userOneInput.value;
-    this.userTwo = this.userTwoInput.value;
+    let userOneName = this.userOneInput.value;
+    let userTwoName = this.userTwoInput.value;
+
+    // Set default user names if nothing is entered at Start
+    userOneName.length > 0 ? this.userOne = userOneName : this.userOne = 'User 1';
+    userTwoName.length > 0 ? this.userTwo = userTwoName : this.userTwo = 'User 2';
   }
 
   resetInputs() {
