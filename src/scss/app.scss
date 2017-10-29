@@ -24,6 +24,10 @@
       pointer-events: none;
     }
 
+    &:hover {
+      background-color: grey;
+    }
+
     &::after {
       position: absolute;
       top: 50%;
@@ -40,15 +44,22 @@
       transform: translate(-50%, -50%);
     }
 
-    &--x::after {
-      content: 'X';
+    &--x {
+      background-color: lightgreen;
+
+      &::after {
+        content: 'X';
+      }
     }
 
-    &--o::after {
-      content: 'O';
+    &--o {
+      background-color: lightsalmon;
+
+      &::after {
+        content: 'O';
+      }
     }
   }
-
 }
 
 .interface {

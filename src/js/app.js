@@ -14,11 +14,17 @@ class Board {
       {'index': 8, 'selected': false, 'owner': 0}
     ];
 
+    // Users
+    this.userOne = '';
+    this.userTwo = '';
+
     // Set selectors
     this.tiles = document.querySelectorAll('[data-js="tile"]');
     this.turnDisplay = document.querySelector('[data-js="turnDisplay"]');
     this.startButton = document.querySelector('[data-js="startButton"]');
     this.resetButton = document.querySelector('[data-js="resetButton"]');
+    this.userOneInput = document.querySelector('[data-js="userOneInput"]');
+    this.userTwoInput = document.querySelector('[data-js="userTwoInput"]');
 
     // Add event listeners
     this.observeReset();
@@ -35,8 +41,8 @@ class Board {
 
   observeStart() {
     this.startButton.addEventListener('click', () => {
-      this.resetTurns();
-      this.clearBoard();
+      this.setUserNames();
+      this.populateTurnDisplay(this.getTurn());
     });
   }
 
@@ -57,7 +63,16 @@ class Board {
   }
 
   //
-  // Methods to get, set and manage turn
+  // Methods for dealing with users
+  //
+
+  setUserNames() {
+    this.userOne = this.userOneInput.value;
+    this.userTwo = this.userTwoInput.value;
+  }
+
+  //
+  // Methods to get, set and manage turns
   //
 
   setTurn(turn) {
@@ -106,12 +121,15 @@ class Board {
     });
 
     // Reset turn counter and update interface display
-    this.setTurn(1);
-    this.populateTurnDisplay(this.getTurn());
+    this.resetTurns();
   }
 
   populateTurnDisplay(turn) {
-    this.turnDisplay.innerHTML = turn;
+    if (turn === 1) {
+      this.turnDisplay.innerHTML = this.userOne;
+    } else if (turn === 2) {
+      this.turnDisplay.innerHTML = this.userTwo
+    }
   }
 
   selectTile(tile) {
