@@ -20,12 +20,20 @@ class Board {
 
     // Set selectors
     this.tiles = document.querySelectorAll('[data-js="tile"]');
+
     this.turnDisplay = document.querySelector('[data-js="turnDisplay"]');
+    this.winnerDisplay = document.querySelector('[data-js="winnerDisplay"');
+
     this.startButton = document.querySelector('[data-js="startButton"]');
     this.resetButton = document.querySelector('[data-js="resetButton"]');
+    this.playAgain = document.querySelector('[data-js="playAgain"]');
+    this.startOver = document.querySelector('[data-js="startOver"]');
+
     this.userOneInput = document.querySelector('[data-js="userOneInput"]');
     this.userTwoInput = document.querySelector('[data-js="userTwoInput"]');
+
     this.startModal = document.querySelector('[data-js="startModal"]');
+    this.winnerModal = document.querySelector('[data-js="winnerModal"]');
     this.modalOverlay = document.querySelector('[data-js="modalOverlay"]');
 
     // Add event listeners
@@ -48,6 +56,22 @@ class Board {
 
   observeReset() {
     this.resetButton.addEventListener('click', () => {
+      this.clearBoard();
+      this.showStartModal();
+    });
+  }
+
+  observePlayAgain() {
+    this.playAgain.addEventListener('click', () => {
+      this.hideWinnerModal();
+      this.clearBoard();
+      this.populateTurnDisplay(this.getTurn());
+    });
+  }
+
+  observeStartOver() {
+    this.startOver.addEventListener('click', () => {
+      this.hideWinnerModal();
       this.clearBoard();
       this.showStartModal();
     });
@@ -156,8 +180,6 @@ class Board {
     }
 
     this.setTileState(tileIndex, 'selected', true);
-
-    // TO DO: add check to see if someone won
     this.analyzeBoard();
   }
 
@@ -169,18 +191,41 @@ class Board {
 
   hideStartModal() {
     this.modalOverlay.classList.add('hidden');
-    this.modalOverlay.classList.remove('visible');
-
+    this.modalOverlay.classList.remove('overlay--visible');
     this.startModal.classList.add('hidden');
-    this.startModal.classList.remove('visible');
+    this.startModal.classList.remove('modal--visible');
   }
 
   showStartModal() {
     this.modalOverlay.classList.add('overlay--visible');
     this.modalOverlay.classList.remove('hidden');
-
-    this.startModal.classList.add('start-modal--visible');
+    this.startModal.classList.add('modal--visible');
     this.startModal.classList.remove('hidden');
+  }
+
+  showWinnerModal() {
+    this.modalOverlay.classList.add('overlay--visible');
+    this.modalOverlay.classList.remove('hidden');
+    this.winnerModal.classList.add('modal--visible');
+    this.winnerModal.classList.remove('hidden');
+
+    this.observePlayAgain();
+    this.observeStartOver();
+  }
+
+  hideWinnerModal() {
+    this.modalOverlay.classList.add('hidden');
+    this.modalOverlay.classList.remove('overlay--visible');
+    this.winnerModal.classList.add('hidden');
+    this.winnerModal.classList.remove('modal--visible');
+  }
+
+  setWinnerDisplay() {
+    if(this.getTurn() === 1) {
+      this.winnerDisplay.innerHTML = `Congratulations, ${this.userOne}`;
+    } else if (this.getTurn() === 2) {
+      this.winnerDisplay.innerHTML = `Congratulations, ${this.userTwo}`;
+    }
   }
 
   //
@@ -195,9 +240,13 @@ class Board {
       // Compare user's array to winning combinations
       if (this.checkForWinner(currentUsersTiles)) {
         this.disableAllTiles();
-        // TO DO: pop message that says you won
-        // TO DO: Handle all tiles are full
+        this.setWinnerDisplay();
+        this.showWinnerModal();
+        // TO DO: hide interface text and display
         console.log('winner!');
+      } else {
+        // TO DO: Handle all tiles are full
+        console.log('Are all tiles full? If so, end game.');
       }
     }
   }

@@ -1,0 +1,59 @@
+.board {
+  width: 100%;
+  overflow: auto;
+
+  background-color: pink;
+
+  &__tile {
+    position: relative;
+
+    width: (100% / 3);
+    height: calc((100vh - 150px) / 3);
+    float: left;
+
+    padding: 5px;
+    border: 5px solid red;
+
+    vertical-align: middle;
+
+    &--selected {
+      pointer-events: none;
+    }
+
+    &:hover {
+      background-color: grey;
+    }
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      width: 100%;
+
+      font-family: 'Arial', sans-serif;
+      font-size: 6rem;
+      text-align: center;
+
+      vertical-align: middle;
+
+      transform: translate(-50%, -50%);
+    }
+
+    &--x {
+      background-color: lightgreen;
+
+      &::after {
+        content: 'X';
+      }
+    }
+
+    &--o {
+      background-color: lightsalmon;
+
+      &::after {
+        content: 'O';
+      }
+    }
+  }
+}

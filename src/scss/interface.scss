@@ -1,0 +1,29 @@
+.interface {
+  height: 150px;
+
+  padding: 25px;
+
+  background-color: rgb(0, 174, 255);
+
+  text-align: center;
+
+  &__copy {
+    margin: 10px;;
+
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__button-wrapper {
+    display: inline-block;
+    width: 50%;
+  }
+
+  &__button {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 8px 15px;
+
+    text-transform: uppercase;
+  }
+}
