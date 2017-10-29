@@ -57,7 +57,7 @@ class Board {
   observeReset() {
     this.resetButton.addEventListener('click', () => {
       this.clearBoard();
-      this.showStartModal();
+      this.populateTurnDisplay(this.getTurn());
     });
   }
 
@@ -160,7 +160,7 @@ class Board {
     if (turn === 1) {
       this.turnDisplay.innerHTML = `It's your turn, ${this.userOne}!`;
     } else if (turn === 2) {
-      this.turnDisplay.innerHTML = `It's your turn, ${this.userTwo}`;
+      this.turnDisplay.innerHTML = `It's your turn, ${this.userTwo}!`;
     }
   }
 
@@ -220,11 +220,13 @@ class Board {
     this.winnerModal.classList.remove('modal--visible');
   }
 
-  setWinnerDisplay() {
-    if(this.getTurn() === 1) {
-      this.winnerDisplay.innerHTML = `Congratulations, ${this.userOne}`;
-    } else if (this.getTurn() === 2) {
-      this.winnerDisplay.innerHTML = `Congratulations, ${this.userTwo}`;
+  setWinnerDisplay(turn) {
+    if (turn === 1) {
+      this.winnerDisplay.innerHTML = `Congratulations, ${this.userOne}!`;
+    } else if (turn === 2) {
+      this.winnerDisplay.innerHTML = `Congratulations, ${this.userTwo}!`;
+    } else if (turn === 0) {
+      this.winnerDisplay.innerHTML = `Whoa! It's a tie!`;
     }
   }
 
@@ -240,13 +242,14 @@ class Board {
       // Compare user's array to winning combinations
       if (this.checkForWinner(currentUsersTiles)) {
         this.disableAllTiles();
-        this.setWinnerDisplay();
+        this.setWinnerDisplay(this.getTurn());
         this.showWinnerModal();
-        // TO DO: hide interface text and display
-        console.log('winner!');
       } else {
-        // TO DO: Handle all tiles are full
-        console.log('Are all tiles full? If so, end game.');
+        debugger;
+        if (this.checkForFullBoard()) {
+          this.showWinnerModal();
+          this.setWinnerDisplay(0);
+        }
       }
     }
   }
@@ -259,6 +262,22 @@ class Board {
     }).filter(function(tile) {
       return tile != undefined;
     });
+  }
+
+  checkForFullBoard() {
+    let selectedTiles = this.tileState.map((tile) => {
+      if (tile.selected === true) {
+        return tile;
+      }
+    }).filter(function(tile) {
+      return tile != undefined;
+    });
+
+    if (selectedTiles.length === 9) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   checkForWinner(userArrayTile) {
