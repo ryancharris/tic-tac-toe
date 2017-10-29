@@ -1,0 +1,26 @@
+// Global classes
+.hidden {
+  display: none;
+}
+
+.button {
+  display: block;
+  padding: 10px 20px;
+
+  width: 75%;
+
+  border: none;
+  border-radius: 5px;
+
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  background-color: #fd9e30;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken(#fd9e30, 10%);
+  }
+}
