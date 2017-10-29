@@ -134,6 +134,10 @@
 
     text-transform: uppercase;
   }
+
+  &--visible {
+    display: table;
+  }
 }
 
 .overlay {
@@ -145,12 +149,12 @@
   height: 100vh;
 
   background-color: rgba(0, 0, 0, 0.5);
+
+  &--visible {
+    display: block;
+  }
 }
 
 .hidden {
   display: none;
-}
-
-.visible {
-  display: initial;
 }

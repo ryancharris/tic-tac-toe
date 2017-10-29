@@ -169,12 +169,18 @@ class Board {
 
   hideStartModal() {
     this.modalOverlay.classList.add('hidden');
+    this.modalOverlay.classList.remove('visible');
+
     this.startModal.classList.add('hidden');
+    this.startModal.classList.remove('visible');
   }
 
   showStartModal() {
-    this.modalOverlay.classList.add('visible');
-    this.startModal.classList.add('visible');
+    this.modalOverlay.classList.add('overlay--visible');
+    this.modalOverlay.classList.remove('hidden');
+
+    this.startModal.classList.add('start-modal--visible');
+    this.startModal.classList.remove('hidden');
   }
 
   //
