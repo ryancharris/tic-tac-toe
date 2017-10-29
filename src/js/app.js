@@ -3,51 +3,15 @@ class Board {
     // Board states
     this.turn = 1;
     this.tileState = [
-      {
-        'index': 0,
-        'selected': false,
-        'owner': 0
-      },
-      {
-        'index': 1,
-        'selected': false,
-        'owner': 0
-      },
-      {
-        'index': 2,
-        'selected': false,
-        'owner': 0
-      },
-      {
-        'index': 3,
-        'selected': false,
-        'owner': 0
-      },
-      {
-        'index': 4,
-        'selected': false,
-        'owner': 0
-      },
-      {
-        'index': 5,
-        'selected': false,
-        'owner': 0
-      },
-      {
-        'index': 6,
-        'selected': false,
-        'owner': 0
-      },
-      {
-        'index': 7,
-        'selected': false,
-        'owner': 0
-      },
-      {
-        'index': 8,
-        'selected': false,
-        'owner': 0
-      }
+      {'index': 0, 'selected': false, 'owner': 0},
+      {'index': 1, 'selected': false, 'owner': 0},
+      {'index': 2, 'selected': false, 'owner': 0},
+      {'index': 3, 'selected': false, 'owner': 0},
+      {'index': 4, 'selected': false, 'owner': 0},
+      {'index': 5, 'selected': false, 'owner': 0},
+      {'index': 6, 'selected': false, 'owner': 0},
+      {'index': 7, 'selected': false, 'owner': 0},
+      {'index': 8, 'selected': false, 'owner': 0}
     ];
 
     // Set selectors
@@ -167,6 +131,12 @@ class Board {
     this.analyzeBoard();
   }
 
+  disableAllTiles() {
+    this.tiles.forEach((tile) => {
+      tile.classList.add('board__tile--selected');
+    });
+  }
+
   //
   // Methods for checking to see if a user has won
   //
@@ -177,13 +147,11 @@ class Board {
 
     if (currentUsersTiles.length >= 3) {
       // Compare user's array to winning combinations
-      debugger;
       if (this.checkForWinner(currentUsersTiles)) {
-        // TO DO: disable all tiles
+        this.disableAllTiles();
         // TO DO: pop message that says you won
+        // TO DO: Handle all tiles are full
         console.log('winner!');
-      } else {
-        console.log('no winner!');
       }
     }
   }
