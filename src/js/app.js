@@ -245,7 +245,6 @@ class Board {
         this.setWinnerDisplay(this.getTurn());
         this.showWinnerModal();
       } else {
-        debugger;
         if (this.checkForFullBoard()) {
           this.showWinnerModal();
           this.setWinnerDisplay(0);
