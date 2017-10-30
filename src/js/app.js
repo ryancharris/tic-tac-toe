@@ -40,8 +40,6 @@ class Board {
     this.observeReset();
     this.observeStart();
     this.observeTiles();
-
-    this.hideStartModal();
   }
 
   //
