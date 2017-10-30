@@ -128,10 +128,19 @@ var Board = function () {
       var _this = this;
 
       this.startButton.addEventListener('click', function () {
-        _this.setUserNames();
-        _this.hideStartModal();
-        _this.populateTurnDisplay(_this.getTurn());
+        _this.handleStart();
       });
+
+      this.startButton.addEventListener('touchend', function () {
+        _this.handleStart();
+      });
+    }
+  }, {
+    key: 'handleStart',
+    value: function handleStart() {
+      this.setUserNames();
+      this.hideStartModal();
+      this.populateTurnDisplay(this.getTurn());
     }
   }, {
     key: 'observeReset',
@@ -139,9 +148,18 @@ var Board = function () {
       var _this2 = this;
 
       this.resetButton.addEventListener('click', function () {
-        _this2.clearBoard();
-        _this2.populateTurnDisplay(_this2.getTurn());
+        _this2.handleReset();
       });
+
+      this.resetButton.addEventListener('touchend', function () {
+        _this2.handleReset();
+      });
+    }
+  }, {
+    key: 'handleReset',
+    value: function handleReset() {
+      this.clearBoard();
+      this.populateTurnDisplay(this.getTurn());
     }
   }, {
     key: 'observePlayAgain',
@@ -149,10 +167,19 @@ var Board = function () {
       var _this3 = this;
 
       this.playAgain.addEventListener('click', function () {
-        _this3.hideWinnerModal();
-        _this3.clearBoard();
-        _this3.populateTurnDisplay(_this3.getTurn());
+        _this3.handlePlayAgain();
       });
+
+      this.playAgain.addEventListener('touchend', function () {
+        _this3.handlePlayAgain();
+      });
+    }
+  }, {
+    key: 'handlePlayAgain',
+    value: function handlePlayAgain() {
+      this.hideWinnerModal();
+      this.clearBoard();
+      this.populateTurnDisplay(this.getTurn());
     }
   }, {
     key: 'observeStartOver',
@@ -160,11 +187,20 @@ var Board = function () {
       var _this4 = this;
 
       this.startOver.addEventListener('click', function () {
-        _this4.hideWinnerModal();
-        _this4.clearBoard();
-        _this4.resetInterfaceHeader();
-        _this4.showStartModal();
+        _this4.handleStartOver();
       });
+
+      this.startOver.addEventListener('touchend', function () {
+        _this4.handleStartOver();
+      });
+    }
+  }, {
+    key: 'handleStartOver',
+    value: function handleStartOver() {
+      this.hideWinnerModal();
+      this.clearBoard();
+      this.resetInterfaceHeader();
+      this.showStartModal();
     }
   }, {
     key: 'observeTiles',
@@ -173,11 +209,20 @@ var Board = function () {
 
       this.tiles.forEach(function (tile) {
         tile.addEventListener('click', function (event) {
-          _this5.selectTile(event.target);
-          _this5.nextTurn();
-          _this5.populateTurnDisplay(_this5.getTurn());
+          _this5.handleTiles();
+        });
+
+        tile.addEventListener('touchend', function (event) {
+          _this5.handleTiles();
         });
       });
+    }
+  }, {
+    key: 'handleTiles',
+    value: function handleTiles() {
+      this.selectTile(event.target);
+      this.nextTurn();
+      this.populateTurnDisplay(this.getTurn());
     }
 
     //
