@@ -47,45 +47,85 @@ class Board {
   //
 
   observeStart() {
-    this.startButton.addEventListener('click touchstart', () => {
-      this.setUserNames();
-      this.hideStartModal();
-      this.populateTurnDisplay(this.getTurn());
+    this.startButton.addEventListener('click', () => {
+      this.handleStart();
     });
+
+    this.startButton.addEventListener('touchend', () => {
+      this.handleStart();
+    });
+  }
+
+  handleStart() {
+    this.setUserNames();
+    this.hideStartModal();
+    this.populateTurnDisplay(this.getTurn());
   }
 
   observeReset() {
-    this.resetButton.addEventListener('click touchstart', () => {
-      this.clearBoard();
-      this.populateTurnDisplay(this.getTurn());
+    this.resetButton.addEventListener('click', () => {
+      this.handleReset();
     });
+
+    this.resetButton.addEventListener('touchend', () => {
+      this.handleReset();
+    });
+  }
+
+  handleReset() {
+    this.clearBoard();
+    this.populateTurnDisplay(this.getTurn());
   }
 
   observePlayAgain() {
-    this.playAgain.addEventListener('click touchstart', () => {
-      this.hideWinnerModal();
-      this.clearBoard();
-      this.populateTurnDisplay(this.getTurn());
+    this.playAgain.addEventListener('click', () => {
+      this.handlePlayAgain();
+    });
+
+    this.playAgain.addEventListener('touchend', () => {
+      this.handlePlayAgain();
     });
   }
 
+  handlePlayAgain() {
+    this.hideWinnerModal();
+    this.clearBoard();
+    this.populateTurnDisplay(this.getTurn());
+  }
+
   observeStartOver() {
-    this.startOver.addEventListener('click touchstart', () => {
-      this.hideWinnerModal();
-      this.clearBoard();
-      this.resetInterfaceHeader();
-      this.showStartModal();
+    this.startOver.addEventListener('click', () => {
+      this.handleStartOver();
     });
+
+    this.startOver.addEventListener('touchend', () => {
+      this.handleStartOver();
+    });
+  }
+
+  handleStartOver() {
+    this.hideWinnerModal();
+    this.clearBoard();
+    this.resetInterfaceHeader();
+    this.showStartModal();
   }
 
   observeTiles() {
     this.tiles.forEach((tile) => {
-      tile.addEventListener('click touchstart', (event) => {
-        this.selectTile(event.target);
-        this.nextTurn();
-        this.populateTurnDisplay(this.getTurn());
+      tile.addEventListener('click', (event) => {
+        this.handleTiles();
+      });
+
+      tile.addEventListener('touchend', (event) => {
+        this.handleTiles();
       });
     });
+  }
+
+  handleTiles() {
+    this.selectTile(event.target);
+    this.nextTurn();
+    this.populateTurnDisplay(this.getTurn());
   }
 
   //
