@@ -20,7 +20,7 @@ const config = {
     path.resolve('./src/scss/app.scss')
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'),
     filename: 'app.js'
   },
   module: {
@@ -49,7 +49,7 @@ const config = {
   ],
   devServer: {
     port: 8080,
-    contentBase: path.resolve('dist'),
+    contentBase: path.resolve('docs'),
     index: 'index.html'
   },
   resolve: {

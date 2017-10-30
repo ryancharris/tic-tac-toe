@@ -164,6 +164,7 @@ var Board = function () {
       this.startOver.addEventListener('click', function () {
         _this4.hideWinnerModal();
         _this4.clearBoard();
+        _this4.resetInterfaceHeader();
         _this4.showStartModal();
       });
     }
@@ -188,8 +189,12 @@ var Board = function () {
   }, {
     key: 'setUserNames',
     value: function setUserNames() {
-      this.userOne = this.userOneInput.value;
-      this.userTwo = this.userTwoInput.value;
+      var userOneName = this.userOneInput.value;
+      var userTwoName = this.userTwoInput.value;
+
+      // Set default user names if nothing is entered at Start
+      userOneName.length > 0 ? this.userOne = userOneName : this.userOne = 'User 1';
+      userTwoName.length > 0 ? this.userTwo = userTwoName : this.userTwo = 'User 2';
     }
   }, {
     key: 'resetInputs',
@@ -346,6 +351,11 @@ var Board = function () {
       } else if (turn === 0) {
         this.winnerDisplay.innerHTML = 'Whoa! It\'s a tie!';
       }
+    }
+  }, {
+    key: 'resetInterfaceHeader',
+    value: function resetInterfaceHeader() {
+      this.turnDisplay.innerHTML = 'Let\'s Play!';
     }
 
     //

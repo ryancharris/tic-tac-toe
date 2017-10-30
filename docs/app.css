@@ -1,6 +1,5 @@
 .board {
-  width: 85%;
-  min-width: 300px;
+  width: 90%;
   margin: 0 auto;
   overflow: auto;
   border: 2px solid rgba(0, 0, 0, 0.15); }
@@ -37,22 +36,32 @@
       .board__tile--o::after {
         content: 'O'; }
 
+@media screen and (max-width: 767px) {
+  .board__tile::after {
+    font-size: 5em; } }
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .board__tile::after {
+    font-size: 6em; } }
+
+@media screen and (min-width: 1024px) {
+  .board__tile::after {
+    font-size: 8em; } }
+
 .interface {
-  height: 150px;
-  padding: 25px;
+  padding: 10px;
   text-align: center; }
   .interface__copy {
-    margin: 10px;
+    margin-bottom: 10px;
     font-size: 24px;
+    font-family: Arial, sans-serif;
     font-weight: bold; }
   .interface__button-wrapper {
     display: inline-block;
     width: 50%; }
   .interface__button {
-    display: inline-block;
-    margin: 0 10px;
-    padding: 8px 15px;
-    text-transform: uppercase; }
+    max-width: 300px;
+    margin: 15px auto; }
 
 .overlay {
   position: absolute;
@@ -66,16 +75,16 @@
 
 .modal {
   position: absolute;
-  top: 40%;
+  top: 15%;
   left: 50%;
   z-index: 200;
   display: table;
   width: 50%;
-  min-width: 300px;
-  height: 40%;
+  height: auto;
+  padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
-  transform: translate(-50%, -40%);
+  transform: translateX(-50%);
   box-shadow: 1px 3px 40px 20px rgba(0, 0, 0, 0.15); }
   .modal__content {
     display: table-cell;
@@ -83,7 +92,7 @@
   .modal__copy {
     margin: 0 auto 35px;
     padding: 0 0.5em;
-    font-size: 1.75rem;
+    font-size: 1.55rem;
     font-family: Helvetica, sans-serif;
     font-weight: bold;
     text-align: center;
@@ -98,32 +107,55 @@
     border: 1px solid #000000;
     border-radius: 5px; }
   .modal__button {
-    display: block;
-    padding: 10px 20px;
-    margin: 0 auto 15px;
-    width: 75%;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background-color: #fd9e30;
-    cursor: pointer; }
-    .modal__button:hover {
-      background-color: #f88602; }
+    margin: 0 auto 15px; }
   .modal__button {
     cursor: pointer; }
   .modal--visible {
     display: table; }
 
-* {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
+@media screen and (max-width: 767px) {
+  .modal {
+    min-width: 95%; } }
+
+@media screen and (min-width: 768px) {
+  .modal {
+    max-width: 450px;
+    width: 100%; } }
+
+.hidden {
+  display: none; }
+
+.button {
+  display: block;
+  padding: 10px 20px;
+  width: 75%;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: #fd9e30;
+  cursor: pointer; }
+  .button:hover {
+    background-color: #f88602; }
 
 body {
   background-color: whitesmoke; }
 
-.hidden {
-  display: none; }
+.app__content {
+  margin: 0 auto;
+  max-width: 70%; }
+
+@media screen and (max-width: 767px) {
+  .app__content {
+    max-width: 90%; } }
+
+@media screen and (min-width: 768px) {
+  .app__content {
+    max-width: 824px; } }
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
 
 /*# sourceMappingURL=app.css.map*/
