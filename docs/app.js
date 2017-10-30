@@ -116,8 +116,6 @@ var Board = function () {
     this.observeReset();
     this.observeStart();
     this.observeTiles();
-
-    this.hideStartModal();
   }
 
   //
