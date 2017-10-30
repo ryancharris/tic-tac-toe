@@ -4,7 +4,8 @@
   "description": "Web Developer application coding challenge",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --hot --inline"
+    "start": "webpack-dev-server --progress --colors --hot --inline",
+    "build": "webpack"
   },
   "author": "Ryan Harris",
   "license": "ISC",
