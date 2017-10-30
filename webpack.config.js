@@ -39,7 +39,9 @@ const config = {
       },
       {
         test: /\.scss$/,
-        use: extractSass.extract(['css-loader', 'sass-loader', 'postcss-loader'])
+        use: extractSass.extract(
+          ['css-loader', 'postcss-loader', 'sass-loader']
+        )
       }
     ]
   },
@@ -53,10 +55,9 @@ const config = {
     index: 'index.html'
   },
   resolve: {
-    extensions: ['.js', '.scss'],
+    extensions: ['.js', '.css', '.scss'],
     modules: ['node_modules']
-  },
-  watch: true
+  }
 }
 
 module.exports = config;

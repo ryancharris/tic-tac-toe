@@ -48,10 +48,12 @@ class Board {
 
   observeStart() {
     this.startButton.addEventListener('click', () => {
+      console.log(event);
       this.handleStart();
     });
 
     this.startButton.addEventListener('touchend', () => {
+      console.log(event);
       this.handleStart();
     });
   }

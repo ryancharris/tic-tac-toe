@@ -128,10 +128,12 @@ var Board = function () {
       var _this = this;
 
       this.startButton.addEventListener('click', function () {
+        console.log(event);
         _this.handleStart();
       });
 
       this.startButton.addEventListener('touchend', function () {
+        console.log(event);
         _this.handleStart();
       });
     }
