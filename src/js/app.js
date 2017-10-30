@@ -47,7 +47,7 @@ class Board {
   //
 
   observeStart() {
-    this.startButton.addEventListener('click', () => {
+    this.startButton.addEventListener('click touchstart', () => {
       this.setUserNames();
       this.hideStartModal();
       this.populateTurnDisplay(this.getTurn());
@@ -55,14 +55,14 @@ class Board {
   }
 
   observeReset() {
-    this.resetButton.addEventListener('click', () => {
+    this.resetButton.addEventListener('click touchstart', () => {
       this.clearBoard();
       this.populateTurnDisplay(this.getTurn());
     });
   }
 
   observePlayAgain() {
-    this.playAgain.addEventListener('click', () => {
+    this.playAgain.addEventListener('click touchstart', () => {
       this.hideWinnerModal();
       this.clearBoard();
       this.populateTurnDisplay(this.getTurn());
@@ -70,7 +70,7 @@ class Board {
   }
 
   observeStartOver() {
-    this.startOver.addEventListener('click', () => {
+    this.startOver.addEventListener('click touchstart', () => {
       this.hideWinnerModal();
       this.clearBoard();
       this.resetInterfaceHeader();
@@ -80,7 +80,7 @@ class Board {
 
   observeTiles() {
     this.tiles.forEach((tile) => {
-      tile.addEventListener('click', (event) => {
+      tile.addEventListener('click touchstart', (event) => {
         this.selectTile(event.target);
         this.nextTurn();
         this.populateTurnDisplay(this.getTurn());
