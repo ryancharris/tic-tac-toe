@@ -1,7 +1,7 @@
 {
-  "name": "punk-ave-challenge",
+  "name": "tic-tac-toe",
   "version": "1.0.0",
-  "description": "Web Developer application coding challenge",
+  "description": "Tic Tac Toe",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --colors --hot --inline",
