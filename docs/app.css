@@ -11,6 +11,7 @@
     border: 2px solid rgba(0, 0, 0, 0.15);
     background-color: white;
     -webkit-transition: background-color 200ms linear, border 200ms linear;
+    -o-transition: background-color 200ms linear, border 200ms linear;
     transition: background-color 200ms linear, border 200ms linear;
     cursor: pointer; }
     .board__tile--selected {
@@ -28,6 +29,7 @@
       text-align: center;
       vertical-align: middle;
       -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
               transform: translate(-50%, -50%); }
     .board__tile--x {
       background-color: #ff7be2; }
@@ -87,6 +89,7 @@
   background-color: #ffffff;
   border-radius: 10px;
   -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
           transform: translateX(-50%);
   -webkit-box-shadow: 1px 3px 40px 20px rgba(0, 0, 0, 0.15);
           box-shadow: 1px 3px 40px 20px rgba(0, 0, 0, 0.15); }
