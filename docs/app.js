@@ -98,7 +98,7 @@ var Board = function () {
     this.tiles = document.querySelectorAll('[data-js="tile"]');
 
     this.turnDisplay = document.querySelector('[data-js="turnDisplay"]');
-    this.winnerDisplay = document.querySelector('[data-js="winnerDisplay"');
+    this.winnerDisplay = document.querySelector('[data-js="winnerDisplay"]');
 
     this.startButton = document.querySelector('[data-js="startButton"]');
     this.resetButton = document.querySelector('[data-js="resetButton"]');
@@ -128,12 +128,10 @@ var Board = function () {
       var _this = this;
 
       this.startButton.addEventListener('click', function () {
-        console.log(event);
         _this.handleStart();
       });
 
       this.startButton.addEventListener('touchend', function () {
-        console.log(event);
         _this.handleStart();
       });
     }

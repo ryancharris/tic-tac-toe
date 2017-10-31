@@ -22,7 +22,7 @@ class Board {
     this.tiles = document.querySelectorAll('[data-js="tile"]');
 
     this.turnDisplay = document.querySelector('[data-js="turnDisplay"]');
-    this.winnerDisplay = document.querySelector('[data-js="winnerDisplay"');
+    this.winnerDisplay = document.querySelector('[data-js="winnerDisplay"]');
 
     this.startButton = document.querySelector('[data-js="startButton"]');
     this.resetButton = document.querySelector('[data-js="resetButton"]');
@@ -48,12 +48,10 @@ class Board {
 
   observeStart() {
     this.startButton.addEventListener('click', () => {
-      console.log(event);
       this.handleStart();
     });
 
     this.startButton.addEventListener('touchend', () => {
-      console.log(event);
       this.handleStart();
     });
   }
